@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var lai=require('./routes/lai');
+var lai = require('./routes/lai');
 
 var app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //模块化路由
 app.use('/', routes);
 app.use('/users', users);
-app.use('/lai',lai);
+app.use('/lai', lai);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
