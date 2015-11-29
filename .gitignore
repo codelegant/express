@@ -2,6 +2,7 @@
 logs
 *.log
 typings/
+.vscode
 # Runtime data
 pids
 *.pid

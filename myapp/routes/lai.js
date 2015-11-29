@@ -3,7 +3,7 @@ var router = express.Router();
 var app = express();
 var mysql = require("mysql");
 var console = require("better-console");
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
 	host: "localhost",
 	user: "root",
 	password: "root",
@@ -30,23 +30,25 @@ router.route('/homepage/:id')
 		res.send('我没有拿到你的ID');
 	});
 
-connection.connect(function (err) {
-	if (err) {
-		console.error("连接错误");
-	}
-});
+
 router.get('/', function (req, res) {
-	connection.query("SELECT * FROM 'album'", function (err, rows, fields) {
+	pool.getConnection(function (err,connection) {
 		if (err) {
-			console.error("查询出错");
-			throw err;
-		} else {
-			console.log(rows);
+			console.error("连接错误");
 		}
+		connection.query("SELECT * FROM album", function (err, rows) {
+			if (err) {
+				console.error("查询出错");
+				throw err;
+			} else {
+				console.log(rows[1]["artist"]);
+				console.log(rows.length);
+			}
+			connection.release();
+		});
 	});
 	res.send('Lai home page');
 });
-connection.end();
 
 router.get('/user/:id', function (req, res, next) {
 	if (req.params.id == 0) next('route');
