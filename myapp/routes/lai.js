@@ -13,7 +13,7 @@ router.use(function timeLog(req, res, next) {
 	console.log('Time: ', Date.now());
 	next();
 });
-
+//中间件集
 router.route('/homepage/:id')
 	.get(function (req, res, next) {
 		if (req.params.id == 0) next('route');
@@ -25,6 +25,7 @@ router.route('/homepage/:id')
 		res.send('Post homepage');
 	});
 
+//下一个路由
 router.route('/homepage/:id')
 	.get(function (req, res, next) {
 		res.send('我没有拿到你的ID');

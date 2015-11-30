@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var lai = require('./routes/lai');
+var admin=require("./routes/application");
 
 var app = express();
 
@@ -26,11 +27,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.set('trust proxy','loopback');
 
 
-//模块化路由
+//模块化路由,controller
 app.use('/', routes);
 app.use('/users', users);
 app.use('/lai', lai);
 
+//子应用,module
+app.use("/admin",admin);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
