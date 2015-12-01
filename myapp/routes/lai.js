@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 var mysql = require("mysql");
-var multer=require("multer"),
-	bodyParser=require("body-parser");
 var pool = mysql.createPool({
 	host: "localhost",
 	user: "root",
