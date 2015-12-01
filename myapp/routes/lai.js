@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 var mysql = require("mysql");
-var console = require("better-console");
+var multer=require("multer"),
+	bodyParser=require("body-parser");
 var pool = mysql.createPool({
 	host: "localhost",
 	user: "root",
@@ -62,7 +63,7 @@ router.get('/user/:id', function (req, res, next) {
 });
 
 router.get('/about', function (req, res) {
-	res.send('About Lai');
+	res.send(req.baseUrl);
 });
 
 router.get('/error', function (req, res) {
