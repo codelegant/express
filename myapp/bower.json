@@ -1,0 +1,27 @@
+{
+  "name": "myapp",
+  "description": "Express Action",
+  "main": "app.js",
+  "authors": [
+    "Laichuanfeng <elegant.lai@kiwifi.cn>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sematicUI",
+    "expresss"
+  ],
+  "homepage": "https://github.com/codelegant/express",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "semantic": "semantic-ui#~2.1.6"
+  }
+}
