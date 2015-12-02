@@ -15,7 +15,7 @@ router.use(function timeLog(req, res, next) {
 //中间件集
 router.route('/homepage/:id')
 	.get(function (req, res, next) {
-		if (req.params.id == 0) next('route');
+		if (req.params.id == 0) next('route');//下一个router.route('/homepage/:id')
 		else next();
 	}, function (req, res, next) {
 		res.send('你给了我ID: ' + req.params.id);

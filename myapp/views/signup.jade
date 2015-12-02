@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	div.ui.two.column.centered.grid
+		div.column
+			form.ui.form(action="",method="post")
+				.field
+					label(for="username") 用户名
+					input(type="text", name="username", placeholder="用户名")
+				.field
+					label(for="password") 密码
+					input(type="text", name="password", placeholder="密码")
+				.field
+					label(for="password_again") 重复密码
+					input(type="text", name="password_again", placeholder="再次输入密码")
+				button.ui.button(type="submit") 提交

@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var lai = require('./routes/lai');
-var admin=require("./routes/application");
+var admin = require("./routes/application");
 
 var app = express();
 
@@ -23,17 +23,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'vendor')));
 //proxy
 //app.set('trust proxy','loopback');
 
 
 //模块化路由,controller
 app.use('/', routes);
-app.use('/users', users);
-app.use('/lai', lai);
+app.use('/', user);
+//app.use('/lai', lai);
 
 //子应用,module
-app.use("/admin",admin);
+app.use("/admin", admin);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

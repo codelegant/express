@@ -29,17 +29,17 @@ admin.get("/", function (req, res) {
 //   next();
 // });
 
-admin.param(function (param, option) {
-  return function (req, res, next, val) {
-    if (val == option) {
-      console.log("You hit the number 1122");
-    }
-    console.log("doing param function");
-    next();
-  };
-});
+// admin.param(function (param, option) {
+//   return function (req, res, next, val) {
+//     if (val == option) {
+//       console.log("You hit the number 1122");
+//     }
+//     console.log("doing param function");
+//     next();
+//   };
+// });
 
-admin.param("page", 1122);
+// admin.param("page", 1122);
 admin.get("/page/:page", function (req, res) {
   res.send("OK");
 });
