@@ -1,28 +1,36 @@
+- var currentUrl=path
+- var message=msg
 doctype html
-html
+html(lang="zh-Hans")
   head
-    title= "程序师-"+title
-    link(rel='stylesheet', href='/semantic/dist/semantic.min.css')
+    title 程序师-#{title}
+    block link
+      link(rel="stylesheet", href="/semantic/dist/semantic.min.css")
+    block script
+      script(script="/jquery/jquery.min.js")
+      script(script="/semantic/dist/semantic.min.js")
   body
-  - var currentUrl=path
-    div.ui.attached.stackable.secondary.pointing.menu
-      div.ui.container
+    .ui.attached.stackable.secondary.pointing.menu
+      .ui.container
         a.item(href="/",class={active:currentUrl==="/"})
           i.home.icon
-          主页
+          =主页
         a.item(href="/signin",class={active:currentUrl==="/signin"}) 
           i.sign.in.icon
-          登录
+          =登录
         a.item(href="/signup",class={active:currentUrl==="/signup"}) 
           i.user.icon
-          注册
-        a.item(href="/signout") 
+          =注册
+        a.item(href="/signout")
           i.sign.out.icon
-          注销
-        div.right.item
-          div.ui.input.icon
+          =注销
+        .right.item
+          .ui.input.icon
             input(type="text",placeholder="回车搜索……")
             i.search.icon
-    div.ui.container.segment.raised.very
-      div.ui.large.header.dividing=title
+    .ui.message.container.floating.centered
+      i.close.icon
+      .header=message
+    .ui.container.segment.raised.very
+      .ui.large.header.dividing=title
       block content
