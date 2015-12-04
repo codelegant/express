@@ -1,12 +1,28 @@
 doctype html
 html
   head
-    title= title
+    title= "程序师-"+title
     link(rel='stylesheet', href='/semantic/dist/semantic.min.css')
   body
-    div.ui.three.item.menu
-      a.active.item(href="/signup") 注册
-      a.item(href="/signin") 登录
-      a.item(href="/signout") 注销
-    div.ui.container
+  - var currentUrl=path
+    div.ui.attached.stackable.secondary.pointing.menu
+      div.ui.container
+        a.item(href="/",class={active:currentUrl==="/"})
+          i.home.icon
+          主页
+        a.item(href="/signin",class={active:currentUrl==="/signin"}) 
+          i.sign.in.icon
+          登录
+        a.item(href="/signup",class={active:currentUrl==="/signup"}) 
+          i.user.icon
+          注册
+        a.item(href="/signout") 
+          i.sign.out.icon
+          注销
+        div.right.item
+          div.ui.input.icon
+            input(type="text",placeholder="回车搜索……")
+            i.search.icon
+    div.ui.container.segment.raised.very
+      div.ui.large.header.dividing=title
       block content

@@ -10,12 +10,13 @@ var pool = mysql.createPool({
 });
 
 router.route('/signup')
-	.get(function(req,res){
-		res.render('signup', { title: '注册' });
+	.get(function (req, res) {
+		res.render('signup', { title: '注册', path: req.path });
 	});
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-	res.send('respond with a resource');
-});
+
+router.route('/signin')
+	.get(function (req, res) {
+		res.render('signin', { title: '登录', path: req.path });
+	});
 
 module.exports = router;
