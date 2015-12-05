@@ -68,9 +68,9 @@ router.route("/signup")
 router.route("/signin")
 	.get(function (req, res) {
 		if (req.cookies.userId) {
-			res.render("user/success", { title: "登录", isLogin: true });
+			res.render("user/success", { title: "登入", path: req.path, isLogin: true });
 		} else {
-			res.render("user/signin", { title: "登录", path: req.path });
+			res.render("user/signin", { title: "登入", path: req.path });
 		}
 	})
 	.post(function (req, res) {
@@ -93,21 +93,30 @@ router.route("/signin")
 						.digest("hex");
 					if (md5Password === rows[0].password) {
 						res.cookie("userId", rows[0].id);
-						res.render("user/success", { title: "登录", isLogin: false });
+						res.render("user/success", { title: "登入", isLogin: false, path: req.path });
 					}
 				}
 				connection.release();
 			});
 		});
 	});
-router.route("/index")
-	.get(filter.authorize, function (req, res) {
-		res.render("user/index", { title: "个人中心", path: req.path });
-	});
 
 router.route("/signout")
 	.get(function (req, res) {
 		res.clearCookie("userId");
 		res.redirect("/user/signin");
+	});
+
+router.route("/account")
+	.get(filter.authorize, function (req, res) {
+		res.render("user/account", { title: "账户设定", path: req.path });
+	})
+	.post(filter.authorize, function (req, res) {
+
+	});
+
+router.route("/profile")
+	.get(filter.authorize, function (req, res) {
+		res.render("user/profile", { title: "个人资料", path: req.path });
 	});
 module.exports = router;

@@ -3,6 +3,9 @@ require.config({
 		jquery: "/jquery/dist/jquery.min",
 		semantic: "/semantic/dist/semantic.min"
 	}
+	// shim:{
+	// 	semantic:{exports:"$.fn"}
+	// }
 });
 require(["jquery", "jquery", "semantic"], function ($, jQuery, semantic) {
 	$('.message .close')
