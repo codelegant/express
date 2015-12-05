@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'vendor')));
 
 //模块化路由,controller
 app.use('/', routes);
-app.use('/', user);
+app.use('/user', user);
 //app.use('/lai', lai);
 
 //子应用,module

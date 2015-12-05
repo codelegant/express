@@ -12,9 +12,10 @@ html(lang="zh-Hans")
     .ui.attached.stackable.secondary.pointing.menu
       .ui.container
         a.item(href="/",class={active:currentUrl==="/"}) 主页
-        a.item(href="/signin",class={active:currentUrl==="/signin"}) 登录
-        a.item(href="/signup",class={active:currentUrl==="/signup"}) 注册
-        a.item(href="/signout") 注销
+        a.item(href="/user/signin",class={active:currentUrl==="/signin"}) 登录
+        a.item(href="/user/signup",class={active:currentUrl==="/signup"}) 注册
+        a.item(href="/user/index",class={active:currentUrl==="/index"}) 个人中心
+        a.item(href="/user/signout") 注销
         .right.item
           .ui.input.icon
             input(type="text",placeholder="回车搜索……")

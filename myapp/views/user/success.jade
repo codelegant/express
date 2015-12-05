@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+	.ui.success.icon.message
+		i.warning.icon
+		.content
+			if isLogin
+				.header 你已经成功登录,请勿重复登录
+			else
+				.header 你已经成功登录,请进行后续操作
+			
