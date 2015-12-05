@@ -1,0 +1,10 @@
+extends ../layout
+block content
+	.four.wide.column
+		.ui.vertical.pointing.menu.right.floated
+			a.item(href="/user/profile",class={active:subMenu==="/profile"}) 个人资料
+			a.item(href="/user/account",class={active:subMenu==="/account"}) 账户设定
+			a.item(href="#") 通知中心
+	.eleven.wide.column
+		block side_content
+	.one.width.column

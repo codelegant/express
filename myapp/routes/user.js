@@ -109,7 +109,7 @@ router.route("/signout")
 
 router.route("/account")
 	.get(filter.authorize, function (req, res) {
-		res.render("user/account", { title: "账户设定", path: req.path });
+		res.render("user/account", { title: "账户设定", path:"/profile",subMenu:req.path });
 	})
 	.post(filter.authorize, function (req, res) {
 
@@ -117,6 +117,6 @@ router.route("/account")
 
 router.route("/profile")
 	.get(filter.authorize, function (req, res) {
-		res.render("user/profile", { title: "个人资料", path: req.path });
+		res.render("user/profile", { title: "个人资料", path:"/profile",subMenu: req.path });
 	});
 module.exports = router;
