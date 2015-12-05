@@ -32,13 +32,29 @@ router.route("/signup")
 						.createHash("md5")
 						.update(password, "utf8")
 						.digest("hex");
-					var queryStr = "INSERT INTO `user`(`username`, `password`) VALUES ('" + username + "','" + md5Password + "')";
-					connection.query(queryStr, function (err, rows) {
+					var addUser = function (username, password) {
+						var queryStr = "INSERT INTO `user`(`username`, `password`) VALUES ('" + username + "','" + password + "')";
+						connection.query(queryStr, function (err, rows) {
+							if (err) {
+								console.error("插入出错");
+								throw err;
+							} else {
+								res.redirect("/user/signin");
+							}
+							connection.release();
+						});
+					}
+					var validQueryStr = "SELECT * FROM `user` WHERE `username`='" + username + "'";
+					connection.query(validQueryStr, function (err, rows) {
 						if (err) {
-							console.error("插入数据出错");
+							console.error("查询出错");
 							throw err;
 						} else {
-							res.redirect("/user/signin");
+							if (rows.length > 0) {
+								res.render("user/signup", { title: "注册", path: req.path, msg: "当前用户名已经被使用，请使用其它用户名" });
+							} else {
+								return addUser(username, md5Password);
+							}
 						}
 						connection.release();
 					});
@@ -68,7 +84,7 @@ router.route("/signin")
 			var queryStr = "SELECT `id`,`password` FROM `user` WHERE `username`='" + username + "'";
 			connection.query(queryStr, function (err, rows) {
 				if (err) {
-					console.error("查询数据出错");
+					console.error("查询出错");
 					throw err;
 				} else {
 					var md5Password = crypto
@@ -90,7 +106,7 @@ router.route("/index")
 	});
 
 router.route("/signout")
-	.get(function(req,res){
+	.get(function (req, res) {
 		res.clearCookie("userId");
 		res.redirect("/user/signin");
 	});
