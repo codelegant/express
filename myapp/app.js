@@ -1,14 +1,13 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var user = require('./routes/user');
-var lai = require('./routes/lai');
-var admin = require("./routes/application");
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    routes = require('./routes/index'),
+    user = require('./routes/user'),
+    admin = require("./routes/application"),
+    setting=require("./routes/setting");
 
 var app = express();
 
@@ -25,22 +24,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'vendor')));
 //proxy
-//app.set('trust proxy','loopback');
 
 
 //模块化路由,controller
 app.use('/', routes);
-app.use('/user', user);
+app.use('/', user);
+app.use("/setting",setting);
 //app.use('/lai', lai);
-
-//子应用,module
-app.use("/admin", admin);
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // error handlers
 

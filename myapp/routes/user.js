@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var mysql = require("mysql");
-var crypto = require("crypto");
-var filter = require("./../libs/userAuth");
+var express = require("express"),
+	router = express.Router(),
+	mysql = require("mysql"),
+	crypto = require("crypto"),
+	filter = require("./../libs/userAuth");
 var sqlPool = mysql.createPool({
 	host: "localhost",
 	user: "root",
@@ -39,7 +39,7 @@ router.route("/signup")
 								console.error("插入出错");
 								throw err;
 							} else {
-								res.redirect("/user/signin");
+								res.redirect("/signin");
 							}
 							connection.release();
 						});
@@ -104,19 +104,7 @@ router.route("/signin")
 router.route("/signout")
 	.get(function (req, res) {
 		res.clearCookie("userId");
-		res.redirect("/user/signin");
+		res.redirect("/signin");
 	});
 
-router.route("/account")
-	.get(filter.authorize, function (req, res) {
-		res.render("user/account", { title: "账户设定", path:"/profile",subMenu:req.path });
-	})
-	.post(filter.authorize, function (req, res) {
-
-	});
-
-router.route("/profile")
-	.get(filter.authorize, function (req, res) {
-		res.render("user/profile", { title: "个人资料", path:"/profile",subMenu: req.path });
-	});
 module.exports = router;

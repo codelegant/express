@@ -12,14 +12,14 @@ html(lang="zh-Hans")
     .ui.secondary.pointing.menu.grid
       .ui.container
         a.item(href="/",class={active:currentUrl==="/"}) 主页
-        a.item(href="/user/signin",class={active:currentUrl==="/signin"}) 登入
-        a.item(href="/user/signup",class={active:currentUrl==="/signup"}) 注册
-        a.item(href="/user/profile",class={active:currentUrl==="/profile"})  个人中心
+        a.item(href="/signin",class={active:currentUrl==="/signin"}) 登入
+        a.item(href="/signup",class={active:currentUrl==="/signup"}) 注册
+        a.item(href="/setting/profile",class={active:currentUrl==="/profile"})  个人中心
         .right.item
           .ui.input.icon
             input(type="text",placeholder="回车搜索……")
             i.search.icon
-        a.item(href="/user/signout") 登出
+        a.item(href="/signout") 登出
   - if(message){
     .ui.message.container.floating.grid
       i.close.icon
