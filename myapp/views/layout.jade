@@ -7,30 +7,23 @@ html(lang="zh-Hans")
     block link
       link(rel="stylesheet", href="/semantic/dist/semantic.min.css")
     block script
-      script(script="/jquery/jquery.min.js")
-      script(script="/semantic/dist/semantic.min.js")
+      script(src="/requirejs/require.js",data-main="/javascripts/main.js")
   body
     .ui.attached.stackable.secondary.pointing.menu
       .ui.container
-        a.item(href="/",class={active:currentUrl==="/"})
-          i.home.icon
-          =主页
-        a.item(href="/signin",class={active:currentUrl==="/signin"}) 
-          i.sign.in.icon
-          =登录
-        a.item(href="/signup",class={active:currentUrl==="/signup"}) 
-          i.user.icon
-          =注册
-        a.item(href="/signout")
-          i.sign.out.icon
-          =注销
+        a.item(href="/",class={active:currentUrl==="/"}) 主页
+        a.item(href="/signin",class={active:currentUrl==="/signin"}) 登录
+        a.item(href="/signup",class={active:currentUrl==="/signup"}) 注册
+        a.item(href="/signout") 注销
         .right.item
           .ui.input.icon
             input(type="text",placeholder="回车搜索……")
             i.search.icon
-    .ui.message.container.floating.centered
+  - if(message){
+    .ui.message.container.floating
       i.close.icon
       .header=message
+  - }
     .ui.container.segment.raised.very
       .ui.large.header.dividing=title
       block content
