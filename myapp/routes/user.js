@@ -94,6 +94,8 @@ router.route("/signin")
 					if (md5Password === rows[0].password) {
 						res.cookie("userId", rows[0].id);
 						res.render("user/success", { title: "登入", isLogin: false, path: req.path });
+					} else {
+						res.render("user/signin", { title: "登入", path: req.path, msg: "密码不正确，请重新输入" });
 					}
 				}
 				connection.release();
