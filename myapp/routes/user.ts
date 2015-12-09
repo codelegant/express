@@ -1,8 +1,7 @@
-/// <reference path="./../../../typings/tsd.d.ts" />
+/// <reference path="./../../typings/tsd.d.ts" />
 import express = require("express");
 import mysql = require("mysql");
 import crypto = require("crypto");
-import filter = require("./../../libs/authorize");
 var router = express.Router();
 var sqlPool = mysql.createPool({
 	host: "localhost",
@@ -63,7 +62,7 @@ router.route("/signup")
 			res.render("user/signup", { title: "注册", path: req.path, msg: "两次密码不匹配，请重新输入" });
 		}
 	});
-router.route("/sign")
+router.route("/signin")
 	.get((req, res) => {
 		if (req.cookies.userId) {
 			res.render("user/success", { title: "登入", path: req.path, isLogin: true });

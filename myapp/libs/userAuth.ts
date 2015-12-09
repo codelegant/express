@@ -1,6 +1,6 @@
 
-module authorize {
-	export var signin = function(req, res, next) {
+module userAuth {
+	export var authorize = function(req, res, next) {
 		if (!req.cookies.userId) {
 			res.redirect("/signin");
 		} else {
@@ -8,4 +8,4 @@ module authorize {
 		}
 	}
 }
-export=authorize;
+export=userAuth;
