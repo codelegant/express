@@ -2,17 +2,22 @@ var mongodb = require("mongodb");
 var assert = require("assert");
 var mongoClient = mongodb.MongoClient;
 var url = "mongodb://localhost:27017/express";
-var insertDocuments = function (db, callback) {
+var insertDocuments = (db, callback) => {
     var collection = db.collection("user");
-    collection.updateOne({ "name": "lai" }, { "name": "lai" }, { upsert: true, w: 1 }, function (err, result) {
+    collection.updateOne({ "name": "lai" }, { "name": "lai" }, { upsert: true, w: 1 }, (err, result) => {
         assert.equal(null, err);
         assert.equal(1, result.result.n);
     });
+    collection.findOne({name:"lai"},function(err,item){
+        assert.equal(null,err);
+        assert.equal("lai",item.name);
+        callback();
+    })
 };
-mongoClient.connect(url, function (err, db) {
+mongoClient.connect(url, (err, db) => {
     assert.equal(null, err);
     console.log("Connected correctly to server");
-    insertDocuments(db, function () {
+    insertDocuments(db, () => {
         db.close();
     });
 });
